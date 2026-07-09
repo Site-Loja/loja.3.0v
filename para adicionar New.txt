@@ -1,0 +1,5 @@
+<div class="badge-novidade-top">
+    Novidade <span class="fire-emoji">🔥</span>
+</div>
+
+so copiar e colar no bloco 
