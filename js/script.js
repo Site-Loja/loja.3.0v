@@ -483,11 +483,6 @@ if (checkoutBtn) {
             mensagem += `%0A*Total: R$ ${cartTotal.toFixed(2).replace('.', ',')}*%0A%0A`;
         }
 
-        mensagem += '📍 *Entrega:* %0A';
-        mensagem += '👤 *Nome:* %0A';
-        mensagem += '📱 *Telefone:* %0A%0A';
-        mensagem += '✨ Obrigado pela preferência! ✨';
-        
         const numero = '5538997426348';
         const url = `https://wa.me/${numero}?text=${mensagem}`;
         
