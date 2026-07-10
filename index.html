@@ -142,6 +142,25 @@
 <link href="css/style.css" rel="stylesheet"/></head>
 <body>
 
+<!-- Popup Cupom RELAMPAGO -->
+<div id="popupCupom" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;justify-content:center;align-items:center;">
+<div style="background:linear-gradient(135deg,#f59e0b,#f97316);border-radius:20px;padding:40px 30px;max-width:380px;width:90%;text-align:center;position:relative;box-shadow:0 10px 40px rgba(0,0,0,0.4);animation:popupBounce 0.5s ease;">
+<button onclick="document.getElementById('popupCupom').style.display='none'" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;color:#fff;cursor:pointer;line-height:1;">✕</button>
+<p style="font-size:14px;color:#fff;margin:0 0 10px;">🎉 Oferta Especial 🎉</p>
+<h2 style="font-size:28px;font-weight:bold;color:#fff;margin:0 0 8px;">PROMOÇÃO RELÂMPAGO</h2>
+<div style="width:60px;height:4px;background:#fff;margin:10px auto;border-radius:2px;"></div>
+<p style="font-size:16px;color:#fff;margin:0 0 15px;">Use o cupom e ganhe</p>
+<div style="background:#fff;border-radius:12px;padding:15px 20px;display:inline-block;margin-bottom:15px;">
+<p style="font-size:36px;font-weight:900;color:#f97316;margin:0;letter-spacing:2px;">RELAMPAGO</p>
+</div>
+<p style="font-size:22px;font-weight:bold;color:#fff;margin:0 0 5px;">10% OFF</p>
+<p style="font-size:13px;color:rgba(255,255,255,0.85);margin:0 0 18px;">Válido por tempo limitado!</p>
+<button onclick="document.getElementById('popupCupom').style.display='none'" style="background:#fff;color:#f97316;border:none;padding:12px 35px;border-radius:30px;font-size:16px;font-weight:bold;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);">APROVEITAR</button>
+</div>
+</div>
+<style>@keyframes popupBounce{0%{transform:scale(0.5);opacity:0}100%{transform:scale(1);opacity:1}}</style>
+<script>setTimeout(function(){var p=document.getElementById('popupCupom');if(p)p.style.display='flex';},3000);</script>
+
 <!-- Banner Promoção Splash -->
 <div class="promo-splash" id="promoSplash">
     <div class="promo-texto-container">
@@ -216,23 +235,6 @@
 <input class="w-full" id="searchInput" placeholder="🔍 Buscar produtos..." type="text"/>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="productsCatalog">
-
-<div class="product-card" data-collection="meias" data-description="Meia infantil confortável e estilosa" data-name="Meia Infantil" data-price="29.90">
-<div class="product-image-container">
-<div class="badge-novidade-top">Novidade <span class="fire-emoji">🔥</span></div>
-<img alt="Meia infantil estampada" class="product-image" loading="lazy" src="imagens/meia001.png"/>
-<div class="stock-badge">1 em estoque</div>
-</div>
-<div class="p-3">
-<h3 class="product-name mb-1 truncate">Meia Infantil</h3>
-<p class="text-gray-600 text-xs mb-3 line-clamp-2">Meia infantil confortável e estilosa ✨</p>
-<div class="flex justify-between items-center mb-3">
-<span class="product-price">R$ 29,90</span>
-<span class="product-collection">Meia</span>
-</div>
-<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
-</div>
-</div>
 
 <div class="product-card" data-collection="toucas" data-description="Touca infantil estampada" data-name="Touca Infantil Estampa 1" data-price="35.00">
 <div class="product-image-container">
@@ -336,9 +338,184 @@
 </div>
 </div>
 
+<div class="product-card" data-collection="meias" data-description="Meia infantil confortável e estilosa" data-name="Meia Infantil" data-price="29.90">
+<div class="product-image-container">
+<img alt="Meia infantil estampada" class="product-image" loading="lazy" src="imagens/meia001.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Meia Infantil</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Meia infantil confortável e estilosa ✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 29,90</span>
+<span class="product-collection">Meia</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="conjuntos" data-description="Conjunto infantil tam 10" data-name="Conjunto Tam 10" data-price="79.90">
+<div class="product-image-container">
+<img alt="Conjunto infantil tam 10" class="product-image" loading="lazy" src="imagens/conjunto10.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Conjunto Tam 10</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Conjunto infantil tam 10, leve e confortável ☀️✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 79,90</span>
+<span class="product-collection">Conjunto</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="conjuntos" data-description="Conjunto infantil tam 4" data-name="Conjunto Rosa Tam 4" data-price="49.50">
+<div class="product-image-container">
+<img alt="Conjunto rosa tam 4" class="product-image" loading="lazy" src="imagens/conjuntoroza.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Conjunto Rosa Tam 4</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Conjunto rosa tam 4, leve e confortável ☀️✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 49,50</span>
+<span class="product-collection">Conjunto</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="conjuntos" data-description="Conjunto infantil tam 10" data-name="Conjunto Estampa T10" data-price="79.90">
+<div class="product-image-container">
+<img alt="Conjunto estampa tam 10" class="product-image" loading="lazy" src="imagens/conjuntoT10.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Conjunto Estampa T10</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Conjunto estampa tam 10, leve e confortável ☀️✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 79,90</span>
+<span class="product-collection">Conjunto</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="camisetas" data-description="Camisa Brasil infantil" data-name="Camisa Brasil" data-price="29.90">
+<div class="product-image-container">
+<img alt="Camisa Brasil infantil" class="product-image" loading="lazy" src="imagens/camisaBrasil.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Camisa Brasil</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Camisa Brasil infantil tam P ☀️✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 29,90</span>
+<span class="product-collection">Camiseta</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="meias" data-description="Meia calça infantil unid" data-name="Meia Calça Unid" data-price="25.00">
+<div class="product-image-container">
+<img alt="Meia calça infantil unid" class="product-image" loading="lazy" src="imagens/meiacalça.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Meia Calça Unid</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Meia calça unid tam 2/4, 4/6, 8/10, 10/12, 12/14 ☀️✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 25,00</span>
+<span class="product-collection">Meia</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="acessorios" data-description="Tiara RN" data-name="Tiara RN" data-price="9.90">
+<div class="product-image-container">
+<img alt="Tiara RN" class="product-image" loading="lazy" src="imagens/tiaraRN.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Tiara RN</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Tiara para recém-nascido, delicada e fofa ✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 9,90</span>
+<span class="product-collection">Acessório</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="calcas" data-description="Calça moletom infantil tam 6" data-name="Calça Moletom Tam 6" data-price="49.90">
+<div class="product-image-container">
+<img alt="Calça moletom infantil tam 6" class="product-image" loading="lazy" src="imagens/calçamoletom.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Calça Moletom Tam 6</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Calça moletom confortável e estilosa ✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 49,90</span>
+<span class="product-collection">Calça</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="calcas" data-description="Calça moletom infantil tam 4" data-name="Calça Moletom Tam 4" data-price="59.40">
+<div class="product-image-container">
+<img alt="Calça moletom infantil tam 4" class="product-image" loading="lazy" src="imagens/calçamoleton.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Calça Moletom Tam 4</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Calça moletom confortável e estilosa ✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 59,40</span>
+<span class="product-collection">Calça</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="camisetas" data-description="Camisa ES masculina" data-name="Camisa ES" data-price="64.00">
+<div class="product-image-container">
+<img alt="Camisa ES masculina" class="product-image" loading="lazy" src="imagens/camisaes.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">Camisa ES</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Camisa ES, leve e confortável ☀️✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 64,00</span>
+<span class="product-collection">Camisa</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
+<div class="product-card" data-collection="acessorios" data-description="3 Cuecas infantil tam M" data-name="3 Cuecas Infantil" data-price="54.90">
+<div class="product-image-container">
+<img alt="3 cuecas infantil" class="product-image" loading="lazy" src="imagens/cueca infatil.png"/>
+<div class="stock-badge">1 em estoque</div>
+</div>
+<div class="p-3">
+<h3 class="product-name mb-1 truncate">3 Cuecas Infantil</h3>
+<p class="text-gray-600 text-xs mb-3 line-clamp-2">Pack com 3 cuecas infantis, confortáveis e macias ✨</p>
+<div class="flex justify-between items-center mb-3">
+<span class="product-price">R$ 54,90</span>
+<span class="product-collection">Acessório</span>
+</div>
+<button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
+</div>
+</div>
+
 <div class="product-card" data-collection="jaquetas" data-description="Jaqueta de couro ecológico infantil" data-name="Jaqueta Couro Ecológico" data-price="65.90">
 <div class="product-image-container">
-<div class="badge-novidade-top">Novidade <span class="fire-emoji">🔥</span></div>
 <img alt="Jaqueta de couro ecológico infantil" class="product-image" loading="lazy" src="imagens/0005.png"/>
 <div class="stock-badge">1 em estoque</div>
 </div>
@@ -355,7 +532,6 @@
 
 <div class="product-card" data-collection="calcas" data-description="Calça jeans infantil" data-name="Calça Jeans Tam 4" data-price="82.90">
 <div class="product-image-container">
-<div class="badge-novidade-top">Novidade <span class="fire-emoji">🔥</span></div>
 <img alt="Calça jeans infantil tam 4" class="product-image" loading="lazy" src="imagens/0006.png"/>
 <div class="stock-badge">1 em estoque</div>
 </div>
@@ -372,7 +548,6 @@
 
 <div class="product-card" data-collection="jaquetas" data-description="Jaqueta brim infantil" data-name="Jaqueta Brim Infantil" data-price="76.90">
 <div class="product-image-container">
-<div class="badge-novidade-top">Novidade <span class="fire-emoji">🔥</span></div>
 <img alt="Jaqueta brim infantil" class="product-image" loading="lazy" src="imagens/0007.png"/>
 <div class="stock-badge">1 em estoque</div>
 </div>
@@ -597,7 +772,7 @@
 </div>
 </div>
 
-<div class="product-card" data-collection="vestidos" data-description="Vestido infantil tam 4 alternativo" data-name="Vestido Infantil Estampado" data-price="46.90">
+<div class="product-card" data-collection="vestidos" data-description="Vestido infantil tam 4 alternativo" data-name="Vestido Infantil Estampado" data-price="64.90">
 <div class="product-image-container">
 <img alt="Vestido infantil estampado" class="product-image" loading="lazy" src="imagens/VESTT4.png"/>
 <div class="stock-badge">1 em estoque</div>
@@ -606,7 +781,7 @@
 <h3 class="product-name mb-1 truncate">Vestido Infantil Estampado</h3>
 <p class="text-gray-600 text-xs mb-3 line-clamp-2">Vestido estampado, leve e confortável ☀️✨</p>
 <div class="flex justify-between items-center mb-3">
-<span class="product-price">R$ 46,90</span>
+<span class="product-price">R$ 64,90</span>
 <span class="product-collection">Vestido</span>
 </div>
 <button class="add-to-cart-btn">🛒 Adicionar ao Carrinho</button>
