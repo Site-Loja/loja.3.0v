@@ -1,0 +1,24 @@
+# ===== BACKEND (nunca versionar!) =====
+backend/node_modules/
+backend/.env
+backend/database.sqlite
+backend/database.sqlite-journal
+backend/uploads/
+
+# ===== Geral =====
+*.log
+.DS_Store
+
+# ================================================================
+# IMAGENS DE PRODUTO NUNCA DEVEM IR PARA O GIT
+# ================================================================
+# As fotos dos produtos ficam na pasta do servidor Ubuntu
+# (UPLOADS_DIR do backend/.env) e NÃO no repositório.
+#
+# ATENÇÃO: a pasta /imagens contém MISTURADAS as fotos de produto
+# E os assets do layout (logo, banners). Se você quiser remover as
+# fotos de produto do controle de versão, rode:
+#   git rm -r --cached imagens
+# e mova manualmente para o servidor as fotos que quiser manter.
+# Mantenha no repositório APENAS: logo2.0.png, sol.png (favicon) e
+# os banners usados pelo carrossel (banner*.png/jpg).

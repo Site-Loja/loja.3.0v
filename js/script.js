@@ -435,23 +435,24 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Botão "Adicionar ao Carrinho" em todos os produtos
-document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const productCard = this.closest('.product-card');
-        if (productCard) {
-            addToCart(productCard);
-        }
-    });
+// Botão "Adicionar ao Carrinho" (delegação: funciona com produtos renderizados via API)
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.add-to-cart-btn');
+    if (!btn) return;
+    e.stopPropagation();
+    const productCard = btn.closest('.product-card');
+    if (productCard) {
+        addToCart(productCard);
+    }
 });
 
-// Clique no card do produto
-document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', function(e) {
-        if (e.target.closest('.add-to-cart-btn')) return;
-        console.log('Produto clicado:', this.dataset.name);
-    });
+// Clique no card do produto (delegação)
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.add-to-cart-btn')) return;
+    const card = e.target.closest('.product-card');
+    if (card) {
+        console.log('Produto clicado:', card.dataset.name);
+    }
 });
 
 // Finalizar compra via WhatsApp
@@ -492,16 +493,19 @@ if (checkoutBtn) {
 
 // ===== FILTROS E BUSCA =====
 
-// Filtros de coleção
-document.querySelectorAll('.collection-filter').forEach(filter => {
-    filter.addEventListener('click', function() {
-        document.querySelectorAll('.collection-filter').forEach(f => f.classList.remove('active'));
-        this.classList.add('active');
-        
-        const collection = this.dataset.collection.toLowerCase();
+// Filtros de coleção (delegação: o container é preenchido via API)
+const filtrosColecoes = document.getElementById('filtrosColecoes');
+if (filtrosColecoes) {
+    filtrosColecoes.addEventListener('click', function(e) {
+        const filter = e.target.closest('.collection-filter');
+        if (!filter) return;
+        this.querySelectorAll('.collection-filter').forEach(f => f.classList.remove('active'));
+        filter.classList.add('active');
+
+        const collection = filter.dataset.collection.toLowerCase();
         filterProducts(collection);
     });
-});
+}
 
 // Busca
 const searchInput = document.getElementById('searchInput');

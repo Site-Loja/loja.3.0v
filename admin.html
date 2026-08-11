@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Painel Admin - Mania de Alegria</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="css/style.css" rel="stylesheet"/>
+<style>
+    body { background: #f8fafc; }
+    .card { background:#fff; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,.06); }
+    .spinner { width:28px; height:28px; border:3px solid #fbbf24; border-top-color:transparent; border-radius:50%; animation:spin .8s linear infinite; display:inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-input { width:100%; border:1px solid #e2e8f0; border-radius:10px; padding:10px 14px; font-size:14px; }
+    .form-input:focus { outline:2px solid #f59e0b; border-color:transparent; }
+    .btn { border-radius:10px; padding:10px 18px; font-weight:700; font-size:14px; cursor:pointer; border:none; transition:filter .15s; }
+    .btn:hover { filter:brightness(1.05); }
+    .btn-primary { background:linear-gradient(135deg,#f59e0b,#f97316); color:#fff; }
+    .btn-danger { background:#ef4444; color:#fff; }
+    .btn-ghost { background:#f1f5f9; color:#334155; }
+    .btn:disabled { opacity:.5; cursor:not-allowed; }
+    .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,.85); color:#fff; padding:12px 24px; border-radius:30px; font-weight:600; z-index:999; font-size:14px; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- TELA DE LOGIN -->
+<div id="telaLogin" class="hidden min-h-screen flex items-center justify-center p-4">
+    <div class="card w-full max-w-sm p-8 text-center">
+        <img alt="Mania de Alegria" class="h-16 w-auto mx-auto mb-4" src="imagens/logo2.0.png"/>
+        <h1 class="text-2xl font-bold text-gray-900 mb-1">Painel Admin</h1>
+        <p class="text-gray-500 text-sm mb-6">Entre para gerenciar os produtos</p>
+        <form id="formLogin" class="space-y-4">
+            <input class="form-input" id="loginSenha" placeholder="Senha do administrador" type="password" required/>
+            <button class="btn btn-primary w-full" id="btnLogin" type="submit">Entrar</button>
+        </form>
+        <p class="text-red-500 text-sm mt-3 hidden" id="loginErro"></p>
+    </div>
+</div>
+
+<!-- PAINEL PRINCIPAL -->
+<div id="telaPainel" class="hidden">
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img alt="Mania de Alegria" class="h-10 w-auto" src="imagens/logo2.0.png"/>
+                <h1 class="text-lg font-bold text-gray-900">Gerenciar Produtos</h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <a class="btn btn-ghost" href="index.html" target="_blank">👀 Ver loja</a>
+                <button class="btn btn-ghost" id="btnSair" type="button">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Botão novo produto -->
+        <div class="flex justify-end mb-6">
+            <button class="btn btn-primary" id="btnNovoProduto" type="button">＋ Novo Produto</button>
+        </div>
+
+        <!-- Loading -->
+        <div class="card p-10 text-center hidden" id="painelLoading">
+            <span class="spinner"></span>
+            <p class="text-gray-500 mt-3">Carregando produtos...</p>
+        </div>
+
+        <!-- Erro -->
+        <div class="card p-10 text-center hidden" id="painelErro">
+            <p class="text-xl mb-1">😕 Erro ao carregar</p>
+            <p class="text-gray-500 text-sm mb-4" id="painelErroMsg"></p>
+            <button class="btn btn-ghost" id="btnRecarregar" type="button">🔄 Recarregar</button>
+        </div>
+
+        <!-- Lista -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="listaProdutos"></div>
+    </main>
+</div>
+
+<!-- MODAL FORMULÁRIO (criar/editar) -->
+<div class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" id="modalForm">
+    <div class="card w-full max-w-lg max-h-[90vh] overflow-y-auto p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold text-gray-900" id="modalTitulo">Novo Produto</h2>
+            <button class="text-gray-400 text-2xl leading-none" id="btnFecharModal" type="button">✕</button>
+        </div>
+
+        <form id="formProduto" class="space-y-4">
+            <input id="produtoId" type="hidden"/>
+            <input id="produtoImagemAtual" type="hidden"/>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1" for="campoNome">Nome *</label>
+                <input class="form-input" id="campoNome" maxlength="120" placeholder="Ex: Camiseta Infantil Estampa" required/>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1" for="campoDescricao">Descrição</label>
+                <textarea class="form-input" id="campoDescricao" maxlength="500" placeholder="Detalhes do produto..." rows="3"></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="campoPreco">Preço (R$) *</label>
+                    <input class="form-input" id="campoPreco" min="0" placeholder="39,90" required step="0.01" type="number"/>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="campoColecao">Coleção *</label>
+                    <select class="form-input" id="campoColecao">
+                        <option value="camisetas">Camisetas</option>
+                        <option value="calcas">Calças</option>
+                        <option value="vestidos">Vestidos</option>
+                        <option value="conjuntos">Conjuntos</option>
+                        <option value="jaquetas">Jaquetas</option>
+                        <option value="shorts">Shorts</option>
+                        <option value="meias">Meias</option>
+                        <option value="toucas">Toucas</option>
+                        <option value="acessorios">Acessórios</option>
+                        <option value="geral">Geral</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1" for="campoImagem">Imagem do produto</label>
+                <input accept="image/png,image/jpeg,image/webp,image/gif,image/avif" class="form-input" id="campoImagem" type="file"/>
+                <p class="text-xs text-gray-400 mt-1">Máx. 5 MB. Formatos: JPG, PNG, WEBP, GIF, AVIF. Ao editar, deixe vazio para manter a imagem atual.</p>
+                <div class="mt-3" id="previewImagem" style="display:none;">
+                    <img alt="Preview" class="h-32 w-32 object-cover rounded-lg border" id="previewImg"/>
+                    <p class="text-xs text-gray-400 mt-1" id="previewTexto"></p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 cursor-pointer">
+                    <input id="campoEstoque" type="checkbox" checked/>
+                    Em estoque
+                </label>
+                <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 cursor-pointer">
+                    <input id="campoDestaque" type="checkbox"/>
+                    Destaque
+                </label>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <button class="btn btn-primary flex-1" id="btnSalvar" type="submit">
+                    <span id="btnSalvarTexto">Salvar Produto</span>
+                    <span class="spinner hidden" id="btnSalvarSpinner" style="width:16px;height:16px;border-width:2px;vertical-align:-3px;"></span>
+                </button>
+                <button class="btn btn-ghost" id="btnCancelarForm" type="button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL CONFIRMAR EXCLUSÃO -->
+<div class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" id="modalExcluir">
+    <div class="card w-full max-w-sm p-6 text-center">
+        <p class="text-4xl mb-3">🗑️</p>
+        <h2 class="text-lg font-bold text-gray-900 mb-1">Excluir produto?</h2>
+        <p class="text-gray-500 text-sm mb-5">A imagem também será removida do servidor. Esta ação não pode ser desfeita.</p>
+        <div class="flex gap-3 justify-center">
+            <button class="btn btn-ghost" id="btnCancelarExcluir" type="button">Cancelar</button>
+            <button class="btn btn-danger" id="btnConfirmarExcluir" type="button">Sim, excluir</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
