@@ -142,46 +142,6 @@
 <link href="css/style.css" rel="stylesheet"/></head>
 <body>
 
-<!-- Popup Cupom RELAMPAGO -->
-<div id="popupCupom" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;justify-content:center;align-items:center;">
-<div style="background:linear-gradient(135deg,#f59e0b,#f97316);border-radius:20px;padding:40px 30px;max-width:380px;width:90%;text-align:center;position:relative;box-shadow:0 10px 40px rgba(0,0,0,0.4);animation:popupBounce 0.5s ease;">
-<button onclick="document.getElementById('popupCupom').style.display='none'" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;color:#fff;cursor:pointer;line-height:1;">✕</button>
-<p style="font-size:14px;color:#fff;margin:0 0 10px;">🎉 Oferta Especial 🎉</p>
-<h2 style="font-size:28px;font-weight:bold;color:#fff;margin:0 0 8px;">PROMOÇÃO RELÂMPAGO</h2>
-<div style="width:60px;height:4px;background:#fff;margin:10px auto;border-radius:2px;"></div>
-<p style="font-size:16px;color:#fff;margin:0 0 15px;">Use o cupom e ganhe</p>
-<div style="background:#fff;border-radius:12px;padding:15px 20px;display:inline-block;margin-bottom:15px;">
-<p style="font-size:36px;font-weight:900;color:#f97316;margin:0;letter-spacing:2px;">RELAMPAGO</p>
-</div>
-<p style="font-size:22px;font-weight:bold;color:#fff;margin:0 0 5px;">10% OFF</p>
-<p style="font-size:13px;color:rgba(255,255,255,0.85);margin:0 0 18px;">Válido por tempo limitado!</p>
-<button onclick="document.getElementById('popupCupom').style.display='none'" style="background:#fff;color:#f97316;border:none;padding:12px 35px;border-radius:30px;font-size:16px;font-weight:bold;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);">APROVEITAR</button>
-</div>
-</div>
-<style>@keyframes popupBounce{0%{transform:scale(0.5);opacity:0}100%{transform:scale(1);opacity:1}}</style>
-<script>setTimeout(function(){var p=document.getElementById('popupCupom');if(p)p.style.display='flex';},3000);</script>
-
-<!-- Banner Promoção Splash -->
-<div class="promo-splash" id="promoSplash">
-    <div class="promo-texto-container">
-        <p class="promo-label">✨ Confira nossas ofertas ✨</p>
-        <h1 class="promo-titulo">PROMOÇÃO RELÂMPAGO</h1>
-        <div class="promo-linha"></div>
-        <div class="promo-desconto">OFERTA ESPECIAL</div>
-        <p class="promo-sub">Aproveite os melhores preços em roupas infantis!</p>
-        <p class="promo-desc">Clique para continuar comprando</p>
-    </div>
-    <!-- Estrelas decorativas -->
-    <div class="promo-star" style="top:15%;left:10%;animation-delay:0s;"></div>
-    <div class="promo-star" style="top:25%;right:15%;animation-delay:0.5s;"></div>
-    <div class="promo-star" style="bottom:20%;left:20%;animation-delay:1s;"></div>
-    <div class="promo-star" style="top:40%;left:5%;animation-delay:0.3s;"></div>
-    <div class="promo-star" style="bottom:30%;right:10%;animation-delay:0.7s;"></div>
-    <div class="promo-star" style="top:10%;right:30%;animation-delay:1.2s;"></div>
-    <div class="promo-star" style="bottom:15%;left:40%;animation-delay:0.4s;"></div>
-    <div class="promo-star" style="top:50%;right:5%;animation-delay:0.9s;"></div>
-</div>
-
 <canvas id="snowCanvas"></canvas>
 
 
@@ -349,19 +309,4 @@ Nossa coleção inclui camisetas, calças jeans, vestidos, conjuntos, jaquetas, 
 <script src="js/script.js?v=2"></script>
 <script src="js/catalogo.js"></script>
 <script src="js/snow-debug.js"></script>
-<script>
-(function() {
-    const splash = document.getElementById('promoSplash');
-    if (!splash) return;
-
-    function fecharBanner() {
-        if (splash.classList.contains('saindo')) return;
-        splash.classList.add('saindo');
-        setTimeout(() => splash.remove(), 900);
-    }
-
-    splash.addEventListener('click', fecharBanner);
-    setTimeout(fecharBanner, 5000);
-})();
-</script>
 </html>
