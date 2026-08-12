@@ -49,6 +49,9 @@ const catalogo = (() => {
         const estoque = p.em_estoque
             ? '<div class="stock-badge">Em estoque</div>'
             : '<div class="stock-badge" style="background:#ef4444;">Esgotado</div>';
+        const destaque = p.destaque
+            ? '<div class="destaque-badge">⭐ Destaque</div>'
+            : '';
         const imagem = p.imagem_url
             ? `<img alt="${p.nome}" class="product-image" loading="lazy" src="${p.imagem_url}" onerror="this.closest('.product-card').querySelector('.product-image-container').innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:40px;background:#fef3c7;\'>🛍️</div>';">`
             : '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:40px;background:#fef3c7;">🛍️</div>';
@@ -57,6 +60,7 @@ const catalogo = (() => {
 <div class="product-card" data-collection="${p.colecao}" data-description="${p.descricao.replace(/"/g, '&quot;')}" data-name="${p.nome.replace(/"/g, '&quot;')}" data-price="${p.preco}">
 <div class="product-image-container">
 ${imagem}
+${destaque}
 ${estoque}
 </div>
 <div class="p-3">
